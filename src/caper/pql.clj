@@ -6,9 +6,19 @@
   [cmd & body]
   ())
 
-(def-command command
-  [command expression]
+(defn do-command
+  [data & params]
   ())
+
+(def-command find
+  '[WHERE+ expression]
+  [expression data]
+  ())
+
+(def-command dump
+  '[STRING WHERE expression]
+  [data file-name expression]
+  (write-pcap file-name (do-command data expression)))
 
 (defn join-keys
   [separator coll]
